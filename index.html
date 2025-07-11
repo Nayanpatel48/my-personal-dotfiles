@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Update Finder 🌸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: linear-gradient(to right, #f6d365, #fda085);
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .input-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    input[type="text"] {
+      padding: 0.7rem 1rem;
+      border: none;
+      border-radius: 50px;
+      width: 70%;
+      max-width: 500px;
+      font-size: 1.1rem;
+      outline: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    button {
+      margin-left: 10px;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      background: #fff;
+      color: #f57c00;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      background: #f57c00;
+      color: #fff;
+    }
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      animation: fadeIn 0.5s ease forwards;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #f57c00;
+    }
+    .card p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+    .badge {
+      display: inline-block;
+      background: #f57c00;
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      margin-right: 5px;
+    }
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    a:hover {
+      color: #f57c00;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📡 AI News Tracker</h1>
+
+  <div class="input-box">
+    <input type="text" id="prompt" placeholder="Enter your search topic...">
+    <button onclick="mockResults()">Search</button>
+  </div>
+
+  <div id="results" class="results"></div>
+
+  <script>
+    // Mock function: replace with real API calls to your Python script later
+    function mockResults() {
+      const query = document.getElementById('prompt').value;
+      if(!query) return;
+
+      const dummyResults = [
+        {
+          title: "OpenAI releases new GPT-5 model",
+          link: "https://openai.com/news/gpt-5",
+          published: "2025-07-11T08:15:00Z",
+          score: 98.7,
+          summary: "OpenAI officially announced the release of their latest GPT-5 model with advanced reasoning abilities."
+        },
+        {
+          title: "Arxiv preprint: Novel AI technique for zero-shot learning",
+          link: "https://arxiv.org/abs/2407.03456",
+          published: "2025-07-10T15:30:00Z",
+          score: 92.4,
+          summary: "A team from Stanford proposed a new zero-shot learning method outperforming previous benchmarks."
+        }
+      ];
+
+      let html = "";
+      dummyResults.forEach(item => {
+        html += `
+          <div class="card">
+            <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+            <p><span class="badge">${item.score}%</span> <span class="badge">${new Date(item.published).toLocaleString()}</span></p>
+            <p>${item.summary}</p>
+          </div>
+        `;
+      });
+      document.getElementById("results").innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
